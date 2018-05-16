@@ -1,0 +1,28 @@
+﻿@using Microsoft.Ajax.Utilities
+@model Vidily.Models.Customer
+@{
+    ViewBag.Title = "Details";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2>Details</h2>
+@if (Model==null)
+{  <P>No Customer Found</P>}
+else
+{
+    <h2>@Model.Name</h2>
+    <ul>
+        
+      
+        @if (Model.DateOfBirth == null)
+        {
+
+        }
+        else
+        {
+            <li>Date of Birth: @Model.DateOfBirth.Value.ToString("dd/MM/yyyy")</li>
+        }
+
+        <li>Subscribed: @Model.IsSubscribedToNewsLetter</li>
+    </ul>
+}

@@ -1,0 +1,56 @@
+﻿@model ICollection<Vidily.Models.Movie>
+
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2>Movies</h2>
+
+
+@Html.ActionLink("New Movie", "New", "Movies", null, new { @class = "btn btn-primary" })
+<br /><br />
+<table class="table table-bordered table-hover">
+
+
+
+    <thead>
+        <tr>
+            <th>Title</th>
+            <th>Genre</th>
+        </tr>
+    </thead>
+    <tbody>
+
+    <tbody>
+
+
+        @if (Model.Count == 0)
+        {
+            <tr>
+                <td>We have no customers</td>
+            </tr>
+        }
+        else
+        {
+            foreach (var film in Model)
+            {
+                <tr>
+                    <td>
+                        @Html.ActionLink(@film.Name, "Edit", new { id = film.Id })
+                    </td>
+
+                    <td>
+                        @film.FilmGenres.Genre
+                    </td>
+
+                </tr>
+            }
+        }
+
+
+    </tbody>
+
+
+    </tbody>
+</table>
