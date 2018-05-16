@@ -56,7 +56,7 @@ namespace Vidily.Controllers
             var movie = _context.Movies.Single(m => m.Id == id);
             var viewModel = new MovieFormViewModel
             {
-                FilmGenreses = _context.FilmGenres.ToList(),
+                FilmGenreses = _context.FilmGenreses.ToList(),
                 Movie = movie
             };
 
@@ -86,7 +86,7 @@ namespace Vidily.Controllers
         //NEW ACtion
         public ViewResult New()
         {
-            var filmegenres = _context.FilmGenres.ToList();
+            var filmegenres = _context.FilmGenreses.ToList();
             var viewModel = new MovieFormViewModel()
             {
                 FilmGenreses = filmegenres
