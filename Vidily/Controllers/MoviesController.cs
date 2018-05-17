@@ -4,6 +4,7 @@ using System.Linq;
 using System.Web.Mvc;
 using Vidily.Models;
 using System.Data.Entity;
+using System.Web.UI.WebControls;
 using Vidily.ViewModels;
 
 namespace Vidily.Controllers
@@ -28,7 +29,7 @@ namespace Vidily.Controllers
 
         {
 
-            var movies = _context.Movies.Include(m => m.FilmGenres).ToList();
+            var movies = _context.Movies.Include(m => m.FilmGenres).SortBy("Name").SortBy("FilmGenresID").ToList();
 
             return View(movies);
 
@@ -54,10 +55,10 @@ namespace Vidily.Controllers
         public ActionResult Edit(int id)
         {
             var movie = _context.Movies.Single(m => m.Id == id);
-            var viewModel = new MovieFormViewModel
+            var viewModel = new MovieFormViewModel(movie)
             {
-                FilmGenreses = _context.FilmGenreses.ToList(),
-                Movie = movie
+                FilmGenreses = _context.FilmGenreses.ToList()
+                
             };
 
             return View("MovieForm", viewModel);
@@ -65,8 +66,23 @@ namespace Vidily.Controllers
 
         //SAVE ACTION
         [HttpPost]
+        [ValidateAntiForgeryToken]
         public ActionResult Save(Movie movie)
         {
+            if (!ModelState.IsValid)
+            {
+                var viewModel = new MovieFormViewModel(movie)
+                {
+                    FilmGenreses = _context.FilmGenreses.ToList()
+                    
+                    
+
+
+                };
+
+                return View("MovieForm", viewModel);
+            }
+
             if (movie.Id == 0)
                 _context.Movies.Add(movie);
             else
@@ -89,7 +105,8 @@ namespace Vidily.Controllers
             var filmegenres = _context.FilmGenreses.ToList();
             var viewModel = new MovieFormViewModel()
             {
-                FilmGenreses = filmegenres
+                FilmGenreses = filmegenres,
+                
             };
             return View("MovieForm", viewModel);
         }

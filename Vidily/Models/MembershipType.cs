@@ -16,8 +16,9 @@ namespace Vidily.Models
         [Required]
         [StringLength(50)]
         public string Name { get; set; }
-  
 
+        public static readonly byte Unknown = 0;
+        public static readonly byte PayAsYouGo = 1;
 
     }
 }

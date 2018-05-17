@@ -32,6 +32,7 @@ namespace Vidily.Controllers
 
         // SAVE CUSTOMER ACTION
         [HttpPost]
+        [ValidateAntiForgeryToken]
         public ActionResult Save(Customer customer)
         {
 

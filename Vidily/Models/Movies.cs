@@ -26,8 +26,10 @@ namespace Vidily.Models
         [Required]
         [Display (Name = "Genre")]
         public byte FilmGenresId { get; set; }
+
         [Required]
-        public int Stock { get; set; }
+        [Range(1,50 ,ErrorMessage = "Stock must be between 1 and 50")]
+        public byte? Stock { get; set; }
 
 
     }
