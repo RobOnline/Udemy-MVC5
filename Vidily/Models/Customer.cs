@@ -24,6 +24,7 @@ namespace Vidily.Models
 
         [DisplayFormat(DataFormatString = "{0:dd/MM/yyyy}")]
         [Display (Name ="Date of Birth")]
+        [Min18YearsIfAMember]
         public DateTime? DateOfBirth { get; set; }
     }
 }
