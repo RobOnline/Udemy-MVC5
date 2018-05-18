@@ -19,7 +19,9 @@ namespace Vidily.Controllers.Api
         {
             _context = new ApplicationDbContext();
         }
+
         //Get  /api/customers
+        [HttpGet]
         public IEnumerable<CustomerDto> GetCustomers()
         {
             return _context.Customers.ToList().Select(Mapper.Map<Customer,CustomerDto>);

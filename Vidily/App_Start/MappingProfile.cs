@@ -19,7 +19,7 @@ namespace Vidily.App_Start
             //Moive Map Profile
             Mapper.CreateMap<Movie, MovieDto>();
             Mapper.CreateMap<MovieDto, Movie>().ForMember(m => m.Id, opt => opt.Ignore());
-          
+
 
 
         }
