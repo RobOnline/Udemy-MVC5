@@ -12,8 +12,15 @@ namespace Vidily.App_Start
     {
         public MappingProfile()
         {
+            //customer map profiles
             Mapper.CreateMap<Customer, CustomerDto>();
             Mapper.CreateMap<CustomerDto, Customer>();
+
+            //Moive Map Profile
+            Mapper.CreateMap<Movie, MovieDto>();
+            Mapper.CreateMap<MovieDto, Movie>().ForMember(m => m.Id, opt => opt.Ignore());
+          
+
 
         }
     }
